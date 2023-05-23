@@ -1,1 +1,6 @@
 require("coreconfig.packer")
+require("coreconfig.bindings")
+require("coreconfig.ui")
+require("coreconfig.plugins.nvimtree")
+require("coreconfig.plugins.lualine")
+require("coreconfig.plugins.tokyonight")
