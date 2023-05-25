@@ -2,7 +2,7 @@ require("coreconfig.packer")
 
 require("coreconfig.bindings")
 
-require("coreconfig.ui")
+require("coreconfig.settings")
 
 require("coreconfig.plugins.nvimtree")
 
@@ -15,3 +15,7 @@ require("coreconfig.plugins.lsp")
 require("coreconfig.plugins.lualine")
 
 require("coreconfig.plugins.treesitter")
+
+require("coreconfig.plugins.gitsigns")
+
+require("coreconfig.plugins.telescope")
