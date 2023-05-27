@@ -16,6 +16,10 @@ require("coreconfig.plugins.lualine")
 
 require("coreconfig.plugins.treesitter")
 
-require("coreconfig.plugins.gitsigns")
+--require("coreconfig.plugins.gitsigns")
 
 require("coreconfig.plugins.telescope")
+
+if vim.g.neovide then
+  require("coreconfig.gui")
+end

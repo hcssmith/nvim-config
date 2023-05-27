@@ -11,7 +11,6 @@ require'lualine'.setup{
       }
     },
     lualine_c = {
-      --"os.date('%a')", 
       'data',
       "require'lsp-status'.status()" }
 	}

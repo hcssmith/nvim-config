@@ -5,12 +5,15 @@ return require('packer').startup(function(use)
 
   use 'lewis6991/gitsigns.nvim'
 
+  use 'vim-crystal/vim-crystal'
+
   use 'folke/tokyonight.nvim'
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
       {'nvim-tree/nvim-web-devicons'},
-    }
+    },
+    config = require('nvim-tree').setup({})
   }
   use {
     'nvim-lualine/lualine.nvim',
