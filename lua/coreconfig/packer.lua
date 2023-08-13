@@ -3,24 +3,57 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'lewis6991/gitsigns.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = require('gitsigns').setup();
+  }
 
   use 'vim-crystal/vim-crystal'
 
-  use 'folke/tokyonight.nvim'
+  use {
+    'folke/tokyonight.nvim',
+    config = require('tokyonight').setup({
+      style = 'storm'
+    })
+  }
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
       {'nvim-tree/nvim-web-devicons'},
     },
-    config = require('nvim-tree').setup({})
+    config = require("nvim-tree").setup({
+      view = {
+        adaptive_size = true
+      },
+      update_focused_file = {
+        enable = true,
+        update_cwd = true,
+      },
+    })
   }
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {
-      {'nvim-lua/lsp-status.nvim'},
+    config = require'lualine'.setup{
+      options = {
+        theme = 'tokyonight',
+        icons_enabled = true,
+      },
+      sections = {
+        lualine_a = {
+          {
+            'filename',
+            path = 1,
+          }
+        },
+        lualine_c = {
+          'data',
+          "require'lsp-status'.status()" }
+        }
+      },
+      requires = {
+        {'nvim-lua/lsp-status.nvim'},
+      }
     }
-  }
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -48,16 +81,29 @@ return require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
 
       -- neovim lua config support
-      {'folke/neodev.nvim'},
-    }
+      {
+        'folke/neodev.nvim',
+        config = require("neodev").setup({})
+      },
   }
+}
 
-  use 'neovim/nvim-lspconfig'
+use 'neovim/nvim-lspconfig'
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,}
+use {
+  'nvim-treesitter/nvim-treesitter',
+  run = function()
+    local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+    ts_update()
+  end,
+  config = require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+  }
+}
   end)
