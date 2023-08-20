@@ -109,7 +109,6 @@ return require('packer').startup(function(use)
 			} end
 		}
 
-		--use {'~/Documents/GitHub/nvim-treesitter-context', -- local dev
     use {
       'nvim-treesitter/nvim-treesitter-context',
       config = function () require'treesitter-context'.setup({enable = true}) end
