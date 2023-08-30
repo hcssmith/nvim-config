@@ -1,6 +1,6 @@
 vim.o.termguicolors = true
 
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("nordic")
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -32,3 +32,4 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
+

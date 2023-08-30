@@ -1,7 +1,21 @@
-vim.cmd [[packadd packer.nvim]]
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  -- My plugins here
+  -- use 'foo1/bar1.nvim'
+  -- use 'foo2/bar2.nvim'
 
   use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
@@ -9,8 +23,7 @@ return require('packer').startup(function(use)
     'lewis6991/gitsigns.nvim',
     config = function () require('gitsigns').setup() end
   }
-
-  use 'vim-crystal/vim-crystal'
+  use 'AlexvZyl/nordic.nvim'
 
   use {
     'folke/tokyonight.nvim',
@@ -18,6 +31,7 @@ return require('packer').startup(function(use)
       style = 'storm'
     }) end
   }
+
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -37,7 +51,7 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     config = function() require'lualine'.setup{
       options = {
-        theme = 'tokyonight',
+        theme = 'nordic',
         icons_enabled = true,
       },
       sections = {
@@ -59,7 +73,9 @@ return require('packer').startup(function(use)
 
     use {
       'nvim-telescope/telescope.nvim', tag = '0.1.1',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = {
+        {'nvim-lua/plenary.nvim'},
+      },
     }
 
     use {
@@ -99,7 +115,7 @@ return require('packer').startup(function(use)
         ts_update()
       end,
       config = function () require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
+        ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -111,7 +127,14 @@ return require('packer').startup(function(use)
 
     use {
       'nvim-treesitter/nvim-treesitter-context',
-      config = function () require'treesitter-context'.setup({enable = true}) end
+      config = function () require'treesitter-context'.setup({
+        enable = true,
+        max_lines = 5,
+      }) end
     }
-
-  end)
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
