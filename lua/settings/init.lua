@@ -1,6 +1,6 @@
 vim.o.termguicolors = true
 
-vim.cmd.colorscheme("nordic")
+vim.cmd.colorscheme("tokyonight")
 
 vim.opt.nu = true
 vim.opt.relativenumber = true

@@ -1,41 +1,39 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+local function notWindows()
+    if vim.loop.os_uname().sysname == "Windows" then
+      return false
+    end
     return true
-  end
-  return false
 end
 
-local packer_bootstrap = ensure_packer()
-
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  -- My plugins here
-  -- use 'foo1/bar1.nvim'
-  -- use 'foo2/bar2.nvim'
-
-  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-
-  use {
+require('lazy').setup({
+  'wbthomason/packer.nvim',
+  { 
     'lewis6991/gitsigns.nvim',
     config = function () require('gitsigns').setup() end
-  }
-  use 'AlexvZyl/nordic.nvim'
-
-  use {
+  },
+  'AlexvZyl/nordic.nvim',
+  {
     'folke/tokyonight.nvim',
     config = function() require('tokyonight').setup({
       style = 'storm'
-    }) end
-  }
-
-  use {
+    }) end},
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
-      {'nvim-tree/nvim-web-devicons'},
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
     },
     config = function() require("nvim-tree").setup({
       view = {
@@ -46,12 +44,12 @@ return require('packer').startup(function(use)
         update_cwd = true,
       },
     }) end
-  }
-  use {
+  },
+  {
     'nvim-lualine/lualine.nvim',
     config = function() require'lualine'.setup{
       options = {
-        theme = 'nordic',
+        theme = 'tokyonight',
         icons_enabled = true,
       },
       sections = {
@@ -66,75 +64,68 @@ return require('packer').startup(function(use)
           "require'lsp-status'.status()" }
         }
       } end,
-      requires = {
-        {'nvim-lua/lsp-status.nvim'},
-      }
+    dependencies = {
+      'nvim-lua/lsp-status.nvim'
     }
-
-    use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.1',
-      requires = {
-        {'nvim-lua/plenary.nvim'},
-      },
+  },
+  {
+    'nvim-telescope/telescope.nvim', version = '0.1.1',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
     }
-
-    use {
-      'VonHeikemen/lsp-zero.nvim',
-      requires = {
-        -- LSP Support
-        {'neovim/nvim-lspconfig'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
-
-        -- Autocompletion
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-buffer'},
-        {'hrsh7th/cmp-path'},
-        {'saadparwaiz1/cmp_luasnip'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'hrsh7th/cmp-nvim-lua'},
-
-        -- Snippets
-        {'L3MON4D3/LuaSnip'},
-        {'rafamadriz/friendly-snippets'},
-
-        -- neovim lua config support
-        {
-          'folke/neodev.nvim',
+  },
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    cond = notWindows,
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',
+      {
+        'folke/neodev.nvim',
           config = function () require("neodev").setup({}) end
-        },
       }
     }
-
-    use 'neovim/nvim-lspconfig'
-
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      run = function()
-        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-        ts_update()
-      end,
-      config = function () require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
-        sync_install = false,
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-      } end
+  },
+  {
+    'kevinhwang91/nvim-ufo',
+    cond = notWindows,
+    dependencies = {
+      'kevinhwang91/promise-async'
     }
-
-    use {
-      'nvim-treesitter/nvim-treesitter-context',
-      config = function () require'treesitter-context'.setup({
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    cond = notWindows,
+    build = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+    config = function () require'nvim-treesitter.configs'.setup {
+      ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
+      sync_install = false,
+      auto_install = true,
+      highlight = {
         enable = true,
-        max_lines = 5,
-      }) end
-    }
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+        additional_vim_regex_highlighting = false,
+      },
+    } end
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    cond = notWindows,
+    config = function () require'treesitter-context'.setup({
+      enable = true,
+      max_lines = 5,
+    }) end
+  }
+})
+

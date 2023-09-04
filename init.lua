@@ -1,18 +1,10 @@
--- First setup / install all plugins
-require("plugins")
-
--- set font in neovide
 if vim.g.neovide then
   require("gui")
 end
-
--- global settings
-require("settings")
-
--- keymappings
+-- keymappings must be first due to mapleader apparently
 require("keymappings")
-
--- configure relevant plugins
+require("plugins")
+require("settings")
 require("plugins.lsp")
 require("plugins.nvimtree")
 require("plugins.telescope")
