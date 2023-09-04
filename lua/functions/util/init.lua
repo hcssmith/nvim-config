@@ -27,3 +27,8 @@ Footer = function()
     return version
   end
 end
+
+NewFile = function ()
+  local fname = vim.fn.input("File: ", "", "file")
+  vim.cmd("e " .. fname)
+end

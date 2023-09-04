@@ -49,6 +49,16 @@ require('lazy').setup({
         header = Core.title,
         center = {
           {
+            icon = '󰈔 ',
+            icon_hl = 'Title',
+            desc = 'New File',
+            desc_hl = 'String',
+            key = 'n',
+            keymap = ':e',
+            key_hl = 'Number',
+            action = function() NewFile() end
+          },
+          {
             icon = ' ',
             icon_hl = 'Title',
             desc = 'Find File',
@@ -149,6 +159,12 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
       {'folke/neodev.nvim',opts = {}}
     }
+  },
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+        require('lspsaga').setup({})
+    end,
   },
   {
     'kevinhwang91/nvim-ufo',
