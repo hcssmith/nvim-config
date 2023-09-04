@@ -162,6 +162,7 @@ require('lazy').setup({
   },
   {
     'nvimdev/lspsaga.nvim',
+    cond = NotWindows,
     config = function()
         require('lspsaga').setup({})
     end,
