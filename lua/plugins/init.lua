@@ -11,12 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local function notWindows()
-    if vim.loop.os_uname().sysname == "Windows" then
-      return false
-    end
-    return true
-end
 
 require('lazy').setup({
   'wbthomason/packer.nvim',
@@ -76,7 +70,7 @@ require('lazy').setup({
   },
   {
     'VonHeikemen/lsp-zero.nvim',
-    cond = notWindows,
+    cond = NotWindows,
     dependencies = {
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
@@ -97,14 +91,14 @@ require('lazy').setup({
   },
   {
     'kevinhwang91/nvim-ufo',
-    cond = notWindows,
+    cond = NotWindows,
     dependencies = {
       'kevinhwang91/promise-async'
     }
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    cond = notWindows,
+    cond = NotWindows,
     build = function()
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
@@ -121,7 +115,7 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    cond = notWindows,
+    cond = NotWindows,
     config = function () require'treesitter-context'.setup({
       enable = true,
       max_lines = 5,
