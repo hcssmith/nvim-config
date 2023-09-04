@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'wbthomason/packer.nvim',
-  { 
+  {
     'lewis6991/gitsigns.nvim',
     config = function () require('gitsigns').setup() end
   },
@@ -99,10 +99,7 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter',
     cond = NotWindows,
-    build = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
+    build = ":TSUpadate",
     config = function () require'nvim-treesitter.configs'.setup {
       ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
       sync_install = false,
