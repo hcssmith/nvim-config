@@ -1,4 +1,5 @@
 require("functions.util")
+require("globals")
 
 if vim.g.neovide then
   require("gui")

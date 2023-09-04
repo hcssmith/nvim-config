@@ -41,10 +41,56 @@ require('lazy').setup({
     }) end
   },
   {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function() require('dashboard').setup({
+      theme = "doom",
+      config = {
+        header = Core.title,
+        center = {
+          {
+            icon = ' ',
+            icon_hl = 'Title',
+            desc = 'Find File',
+            desc_hl = 'String',
+            key = 'o',
+            keymap = ' ff',
+            key_hl = 'Number',
+            action = require('telescope.builtin').find_files
+          },
+          {
+            icon = ' ',
+            icon_hl = 'Title',
+            desc = 'Config Files',
+            desc_hl = 'String',
+            key = 'c',
+            keymap = ' ff',
+            key_hl = 'Number',
+            action = function() Config_files() end
+          },
+          {
+            icon = '󰩈 ',
+            icon_hl = 'Title',
+            desc = 'Quit',
+            desc_hl = 'String',
+            key = 'q',
+            keymap = 'q',
+            key_hl = 'Number',
+            action = ':q'
+          },
+        },
+        footer = Footer()
+      }
+      -- config
+    })
+    end,
+    dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  },
+  {
     'nvim-lualine/lualine.nvim',
     config = function() require'lualine'.setup{
       options = {
-        theme = 'tokyonight',
+        theme = Core.theme,
         icons_enabled = true,
       },
       sections = {
@@ -64,10 +110,27 @@ require('lazy').setup({
     }
   },
   {
-    'nvim-telescope/telescope.nvim', version = '0.1.1',
+    'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim'
-    }
+    },
+    config = function () require('telescope').setup({
+      pickers = {
+        find_files = {
+          mappings = {
+            n = {
+              ["cd"] = function(prompt_bufnr)
+                local selection = require("telescope.actions.state").get_selected_entry()
+                local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+                require("telescope.actions").close(prompt_bufnr)
+                -- Depending on what you want put `cd`, `lcd`, `tcd`
+                vim.cmd(string.format("silent lcd %s", dir))
+              end
+            }
+          }
+        },
+      }
+    }) end
   },
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -119,10 +182,10 @@ require('lazy').setup({
     config = function () require'treesitter-context'.setup({
       min_window_height = 0,
       line_numbers = true,
-      multiline_threshold = 3,
+      multiline_threshold = 20,
       trim_scope = 'outer',
-      mode = 'topline',
-      zindex = 0,
+      mode = 'cursor',
+      zindex = 20,
       enable = true,
       max_lines = 5,
     }) end
