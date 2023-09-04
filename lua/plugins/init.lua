@@ -1,3 +1,5 @@
+require("functions.util")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -13,10 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
-  'wbthomason/packer.nvim',
   {
     'lewis6991/gitsigns.nvim',
-    config = function () require('gitsigns').setup() end
+    config = function () require('gitsigns').setup({}) end
   },
   'AlexvZyl/nordic.nvim',
   {
@@ -83,10 +84,7 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lua',
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
-      {
-        'folke/neodev.nvim',
-          config = function () require("neodev").setup({}) end
-      }
+      {'folke/neodev.nvim',opts = {}}
     }
   },
   {
@@ -100,20 +98,31 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     cond = NotWindows,
     build = ":TSUpadate",
-    config = function () require'nvim-treesitter.configs'.setup {
+    config = function () require'nvim-treesitter.configs'.setup({
       ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
+      modules = {},
+      ignore_install = {},
       sync_install = false,
       auto_install = true,
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
+        disable = {
+          "make"
+        },
       },
-    } end
+    }) end
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
     cond = NotWindows,
     config = function () require'treesitter-context'.setup({
+      min_window_height = 0,
+      line_numbers = true,
+      multiline_threshold = 3,
+      trim_scope = 'outer',
+      mode = 'topline',
+      zindex = 0,
       enable = true,
       max_lines = 5,
     }) end
