@@ -50,3 +50,10 @@ function SearchNotes()
     }
   })
 end
+
+Gui = function ()
+  if vim.g.neovide or vim.g.nvy then
+    return true
+  end
+  return false
+end

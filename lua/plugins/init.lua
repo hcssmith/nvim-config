@@ -103,6 +103,16 @@ require('lazy').setup({
             action = function() Config_files() end
           },
           {
+            icon = '󰚰 ',
+            icon_hl = 'Title',
+            desc = 'Update Plugins',
+            desc_hl = 'String',
+            key = 'u',
+            keymap = '',
+            key_hl = 'Number',
+            action = function () require('lazy').update() end
+          },
+          {
             icon = '󰩈 ',
             icon_hl = 'Title',
             desc = 'Quit',
@@ -175,7 +185,7 @@ require('lazy').setup({
   },
   {
     'VonHeikemen/lsp-zero.nvim',
-    cond = NotWindows,
+    --cond = NotWindows,
     dependencies = {
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
@@ -193,14 +203,14 @@ require('lazy').setup({
   },
   {
     'nvimdev/lspsaga.nvim',
-    cond = NotWindows,
+    --cond = NotWindows,
     config = function()
         require('lspsaga').setup({})
     end,
   },
   {
     'kevinhwang91/nvim-ufo',
-    cond = NotWindows,
+    --cond = NotWindows,
     dependencies = {
       'kevinhwang91/promise-async'
     }
@@ -208,7 +218,7 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter',
     cond = NotWindows,
-    build = ":TSUpadate",
+    build = ":TSUpdate",
     config = function () require'nvim-treesitter.configs'.setup({
       ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
       modules = {},
