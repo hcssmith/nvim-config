@@ -22,6 +22,7 @@ require("settings")
 -- lsp setup
 require("plugins.lsp")
 require("plugins.ufo")
+require('plugins.lazy')
 -- Only inculde when not windows (problem getting C compiler in scope)
 if NotWindows then
   require("plugins.nvimtree")

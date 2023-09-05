@@ -55,7 +55,7 @@ require('lazy').setup({
           {
             icon = '󰈔 ',
             icon_hl = 'Title',
-            desc = 'New File',
+            desc = 'New File                ',
             desc_hl = 'String',
             key = 'n',
             keymap = '\':e\'',
@@ -65,7 +65,7 @@ require('lazy').setup({
           {
             icon = ' ',
             icon_hl = 'Title',
-            desc = 'New Note',
+            desc = 'New Note                ',
             desc_hl = 'String',
             key = 'N',
             keymap = '',
@@ -75,7 +75,7 @@ require('lazy').setup({
           {
             icon = ' ',
             icon_hl = 'Title',
-            desc = 'Search Notes',
+            desc = 'Search Notes            ',
             desc_hl = 'String',
             key = 's',
             keymap = '',
@@ -85,7 +85,7 @@ require('lazy').setup({
           {
             icon = ' ',
             icon_hl = 'Title',
-            desc = 'Find File',
+            desc = 'Find File               ',
             desc_hl = 'String',
             key = 'o',
             keymap = '\' ff\'',
@@ -95,7 +95,7 @@ require('lazy').setup({
           {
             icon = ' ',
             icon_hl = 'Title',
-            desc = 'Config Files',
+            desc = 'Config Files            ',
             desc_hl = 'String',
             key = 'c',
             keymap = '',
@@ -105,17 +105,17 @@ require('lazy').setup({
           {
             icon = '󰚰 ',
             icon_hl = 'Title',
-            desc = 'Update Plugins',
+            desc = 'Update Plugins          ',
             desc_hl = 'String',
             key = 'u',
-            keymap = '',
+            keymap = '\' lu\'',
             key_hl = 'Number',
             action = function () require('lazy').update() end
           },
           {
             icon = '󰩈 ',
             icon_hl = 'Title',
-            desc = 'Quit',
+            desc = 'Quit                    ',
             desc_hl = 'String',
             key = 'q',
             keymap = '\':q\'',
