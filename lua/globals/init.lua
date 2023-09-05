@@ -63,7 +63,7 @@ local guifonts = {
 Core = {
   title = titles.hcssmith,
   theme = "tokyonight",
-  notesdir = os.getenv('HOME') .. "/notes/",
+  notesdir = "/notes/",
   gfont = guifonts.fira,
   tabwidth = 2
 }

@@ -36,17 +36,17 @@ end
 
 NewNote = function ()
   local date = vim.fn.strftime('%Y%m%d')
-  local filename = Core.notesdir .. date .. ".md"
+  local filename = NotesDir() .. date .. ".md"
   local fname = vim.fn.input("open ", filename, "file")
   if fname == "" then return end
-  vim.cmd("cd " .. Core.notesdir)
+  vim.cmd("cd " .. NotesDir())
   vim.cmd("e " .. fname)
 end
 
 function SearchNotes()
   require('telescope').extensions.live_grep_args.live_grep_args({
     search_dirs = {
-      Core.notesdir
+      NotesDir()
     }
   })
 end
@@ -61,4 +61,13 @@ end
 LaunchDashboard = function ()
   require('nvim-tree.api').tree.close()
   vim.cmd(":Dashboard")
+end
+
+NotesDir = function ()
+  if NotWindows then
+     local path = os.getenv('HOME') .. Core.notesdir
+     return path
+  end
+  local path = os.getenv('HOME') .. "ONENOTEDIR" .. Core.notesdir
+  return path
 end

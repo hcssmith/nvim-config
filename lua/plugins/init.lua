@@ -123,7 +123,11 @@ require('lazy').setup({
             action = ':q'
           },
         },
-        footer = Footer()
+        footer = {
+          " ",
+          " ", -- top padding
+          Footer()
+        }
       }
       -- config
     })
