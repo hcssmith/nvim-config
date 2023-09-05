@@ -15,5 +15,6 @@ if NotWindows then
   require("plugins.treesitter-context")
   require("plugins.ufo")
 end
+require('plugins.dashboard')
 require("plugins.telescope")
-
+require('preview')
