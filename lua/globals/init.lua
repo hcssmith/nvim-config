@@ -40,5 +40,6 @@ local titles = {
 }
 Core = {
   title = titles.website_ascii_art,
-  theme = "tokyonight"
+  theme = "tokyonight",
+  notesdir = os.getenv('HOME') .. "/notes/"
 }

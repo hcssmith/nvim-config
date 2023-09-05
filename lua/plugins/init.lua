@@ -54,9 +54,29 @@ require('lazy').setup({
             desc = 'New File',
             desc_hl = 'String',
             key = 'n',
-            keymap = ':e',
+            keymap = '\':e\'',
             key_hl = 'Number',
             action = function() NewFile() end
+          },
+          {
+            icon = ' ',
+            icon_hl = 'Title',
+            desc = 'New Note',
+            desc_hl = 'String',
+            key = 'N',
+            keymap = '',
+            key_hl = 'Number',
+            action = function() NewNote() end
+          },
+          {
+            icon = ' ',
+            icon_hl = 'Title',
+            desc = 'Search Notes',
+            desc_hl = 'String',
+            key = 's',
+            keymap = '',
+            key_hl = 'Number',
+            action = function() SearchNotes() end
           },
           {
             icon = ' ',
@@ -64,7 +84,7 @@ require('lazy').setup({
             desc = 'Find File',
             desc_hl = 'String',
             key = 'o',
-            keymap = ' ff',
+            keymap = '\' ff\'',
             key_hl = 'Number',
             action = require('telescope.builtin').find_files
           },
@@ -74,7 +94,7 @@ require('lazy').setup({
             desc = 'Config Files',
             desc_hl = 'String',
             key = 'c',
-            keymap = ' ff',
+            keymap = '',
             key_hl = 'Number',
             action = function() Config_files() end
           },
@@ -84,7 +104,7 @@ require('lazy').setup({
             desc = 'Quit',
             desc_hl = 'String',
             key = 'q',
-            keymap = 'q',
+            keymap = '\':q\'',
             key_hl = 'Number',
             action = ':q'
           },
@@ -122,9 +142,16 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
-      'nvim-lua/plenary.nvim'
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-live-grep-args.nvim',
+        version = "^1.0.0"
+      }
     },
-    config = function () require('telescope').setup({
+    config = function ()
+      require('telescope').load_extension('live_grep_args')
+      require('telescope').setup({
+
       pickers = {
         find_files = {
           mappings = {

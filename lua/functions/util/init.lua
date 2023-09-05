@@ -30,5 +30,23 @@ end
 
 NewFile = function ()
   local fname = vim.fn.input("File: ", "", "file")
+  if fname == "" then return end
   vim.cmd("e " .. fname)
+end
+
+NewNote = function ()
+  local date = vim.fn.strftime('%Y%m%d')
+  local filename = Core.notesdir .. date .. ".md"
+  local fname = vim.fn.input("open ", filename, "file")
+  if fname == "" then return end
+  vim.cmd("cd " .. Core.notesdir)
+  vim.cmd("e " .. fname)
+end
+
+function SearchNotes()
+  require('telescope').extensions.live_grep_args.live_grep_args({
+    search_dirs = {
+      Core.notesdir
+    }
+  })
 end
