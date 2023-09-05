@@ -57,3 +57,8 @@ Gui = function ()
   end
   return false
 end
+
+LaunchDashboard = function ()
+  require('nvim-tree.api').tree.close()
+  vim.cmd(":Dashboard")
+end

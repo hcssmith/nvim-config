@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<leader>db', ':Dashboard<CR>')
+vim.keymap.set('n', '<leader>db', function () LaunchDashboard() end)
