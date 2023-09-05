@@ -1,1 +1,1 @@
-vim.o.guifont = "FiraCode Nerd Font:h10" -- text below applies for VimScript
+vim.o.guifont = Core.gfont -- text below applies for VimScript
