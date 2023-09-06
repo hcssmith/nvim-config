@@ -19,6 +19,7 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     config = function () require('gitsigns').setup({}) end
   },
+  'lervag/vimtex',
   {
     "iamcco/markdown-preview.nvim",
     build = function() vim.fn["mkdp#util#install"]() end,
