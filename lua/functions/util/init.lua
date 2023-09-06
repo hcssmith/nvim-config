@@ -65,7 +65,6 @@ end
 
 NotesDir = function ()
   local od = os.getenv('%OneDrive%')
-  print(od)
   local path = ""
   if od == nil then
     path = os.getenv('HOME') .. Core.notesdir
