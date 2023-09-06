@@ -64,10 +64,13 @@ LaunchDashboard = function ()
 end
 
 NotesDir = function ()
-  if NotWindows then
-     local path = os.getenv('HOME') .. Core.notesdir
-     return path
+  local od = os.getenv('%OneDrive%')
+  print(od)
+  local path = ""
+  if od == nil then
+    path = os.getenv('HOME') .. Core.notesdir
+  else
+    path = os.getenv("%OneDrive%") .. Core.notesdir
   end
-  local path = os.getenv('HOME') .. os.getenv("%OneDrive%") .. Core.notesdir
   return path
 end
