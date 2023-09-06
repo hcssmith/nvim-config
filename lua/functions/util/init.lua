@@ -68,6 +68,6 @@ NotesDir = function ()
      local path = os.getenv('HOME') .. Core.notesdir
      return path
   end
-  local path = os.getenv('HOME') .. "ONENOTEDIR" .. Core.notesdir
+  local path = os.getenv('HOME') .. os.getenv("%OneDrive%") .. Core.notesdir
   return path
 end
