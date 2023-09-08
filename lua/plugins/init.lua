@@ -143,17 +143,12 @@ require('lazy').setup({
         icons_enabled = true,
       },
       sections = {
-        lualine_a = {
-          {
-            'filename',
-            path = 1,
-          }
-        },
-        lualine_c = {
-          'data',
-          "require'lsp-status'.status()" }
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {LspsagaOrFilename, "require'lsp-status'.status()"},
         }
-      } end,
+      }
+      end,
     dependencies = {
       'nvim-lua/lsp-status.nvim'
     }
@@ -210,7 +205,11 @@ require('lazy').setup({
     'nvimdev/lspsaga.nvim',
     --cond = NotWindows,
     config = function()
-        require('lspsaga').setup({})
+        require('lspsaga').setup({
+            symbol_in_winbar = {
+              enable = false
+            }
+        })
     end,
   },
   {
@@ -225,7 +224,7 @@ require('lazy').setup({
     cond = NotWindows,
     build = ":TSUpdate",
     config = function () require'nvim-treesitter.configs'.setup({
-      ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin" },
+      ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin", "markdown", "markdown_inline" },
       modules = {},
       ignore_install = {},
       sync_install = false,
@@ -242,6 +241,7 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter-context',
     cond = NotWindows,
+    enabled = false,
     config = function () require'treesitter-context'.setup({
       min_window_height = 0,
       line_numbers = true,

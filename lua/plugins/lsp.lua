@@ -44,7 +44,6 @@ lsp.on_attach(function(client, bufnr)
   end
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
@@ -54,6 +53,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
   vim.keymap.set("n", "<leader>pd", ":Lspsaga peek_definition<CR>", opts)
+  vim.keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
+  vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", opts)
+  vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
 end)
 
 lsp.setup()

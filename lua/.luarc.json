@@ -30,5 +30,6 @@
         "/home/hcssmith/.local/share/nvim/lazy/cmp-buffer/lua",
         "/home/hcssmith/.config/nvim/lua",
         "${3rd}/luv/library"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }

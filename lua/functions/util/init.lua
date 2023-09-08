@@ -73,3 +73,12 @@ NotesDir = function ()
   end
   return path
 end
+
+LspsagaOrFilename = function ()
+  local lsp_clients = vim.lsp.get_clients({bufnr=0})
+  if #lsp_clients > 0 then
+    return require('lspsaga.symbol.winbar').get_bar()
+  end
+  local fullname = vim.api.nvim_buf_get_name(0)
+  return fullname
+end
