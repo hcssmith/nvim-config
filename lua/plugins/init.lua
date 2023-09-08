@@ -145,7 +145,17 @@ require('lazy').setup({
       sections = {
         lualine_a = {'mode'},
         lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {LspsagaOrFilename, "require'lsp-status'.status()"},
+        lualine_c = {
+          {
+            'filename',
+            cond = HasNoLsp
+          },
+          {
+            'require("lspsaga.symbol.winbar").get_bar()',
+            cond = HasLsp
+          },
+
+          "require'lsp-status'.status()"},
         }
       }
       end,
