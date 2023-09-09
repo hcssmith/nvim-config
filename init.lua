@@ -3,6 +3,7 @@
 require("globals")
 -- Various utility functions (search funcs , feature / os checks
 require("functions.util")
+require("functions.util.cond")
 
 -- If is a Gui include gui only setup, 
 -- neovide / nvy supported curreny add test

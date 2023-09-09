@@ -1,10 +1,3 @@
-function NotWindows()
-    if vim.loop.os_uname().sysname == "Windows" then
-      return false
-    end
-    return true
-end
-
 function Config_files()
   local cwd = vim.fn.stdpath "config" .. "/"
   local config_dir = { cwd }
@@ -16,7 +9,7 @@ function Config_files()
   }
 end
 
-Footer = function()
+function Footer()
   local version = " " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
   local lazy_ok, lazy = pcall(require, "lazy")
   if lazy_ok then
@@ -28,13 +21,13 @@ Footer = function()
   end
 end
 
-NewFile = function ()
+function NewFile()
   local fname = vim.fn.input("File: ", "", "file")
   if fname == "" then return end
   vim.cmd("e " .. fname)
 end
 
-NewNote = function ()
+function NewNote()
   local date = vim.fn.strftime('%Y%m%d')
   local filename = NotesDir() .. date .. ".md"
   local fname = vim.fn.input("open ", filename, "file")
@@ -51,19 +44,13 @@ function SearchNotes()
   })
 end
 
-Gui = function ()
-  if vim.g.neovide or vim.g.nvy then
-    return true
-  end
-  return false
-end
 
-LaunchDashboard = function ()
+function LaunchDashboard()
   require('nvim-tree.api').tree.close()
   vim.cmd(":Dashboard")
 end
 
-NotesDir = function ()
+function NotesDir()
   local od = os.getenv('%OneDrive%')
   local path = ""
   if od == nil then
@@ -74,15 +61,3 @@ NotesDir = function ()
   return path
 end
 
-HasLsp = function ()
-  local lsp_clients = vim.lsp.get_clients({bufnr=0})
-  if #lsp_clients > 0 then
-    return true
-  else
-    return false
-  end
-end
-
-HasNoLsp = function ()
-  if HasLsp() then return false else return true end
-end
