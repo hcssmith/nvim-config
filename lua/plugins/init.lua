@@ -23,6 +23,7 @@ require('lazy').setup({
     build = function() vim.fn["mkdp#util#install"]() end,
   },
   'AlexvZyl/nordic.nvim',
+  'Mofiqul/dracula.nvim',
   {
     'folke/tokyonight.nvim',
     config = function() require('tokyonight').setup({
@@ -229,7 +230,7 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    cond = NotWindows,
+    cond = HasCCompiler,
     build = ":TSUpdate",
     config = function () require'nvim-treesitter.configs'.setup({
       ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "odin", "markdown", "markdown_inline" },

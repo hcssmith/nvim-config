@@ -62,7 +62,7 @@ local guifonts = {
 }
 Core = {
   title = titles.hcssmith,
-  theme = "tokyonight",
+  theme = "dracula",
   notesdir = "/notes/",
   gfont = guifonts.fira,
   tabwidth = 2,
