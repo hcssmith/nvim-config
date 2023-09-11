@@ -146,7 +146,7 @@ require('lazy').setup({
         lualine_c = {
           {
             'filename',
-            cond = function () return not HasLsp end
+            cond = NoLsp
           },
           {
             'require("lspsaga.symbol.winbar").get_bar()',

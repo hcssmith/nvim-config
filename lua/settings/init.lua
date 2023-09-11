@@ -12,7 +12,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = true
-vim.opt.wrapmargin = 80
+vim.opt.textwidth = Core.textwidth
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true

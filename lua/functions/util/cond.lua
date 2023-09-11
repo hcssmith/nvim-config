@@ -20,3 +20,6 @@ function HasLsp()
     return false
   end
 end
+
+function NoLsp() return not HasLsp() end
+

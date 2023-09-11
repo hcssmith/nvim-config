@@ -65,5 +65,6 @@ Core = {
   theme = "tokyonight",
   notesdir = "/notes/",
   gfont = guifonts.fira,
-  tabwidth = 2
+  tabwidth = 2,
+  textwidth = 80
 }
