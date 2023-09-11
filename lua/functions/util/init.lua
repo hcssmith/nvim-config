@@ -51,12 +51,12 @@ function LaunchDashboard()
 end
 
 function NotesDir()
-  local od = os.getenv('%OneDrive%')
+  local od = os.getenv('OneDrive')
   local path = ""
   if od == nil then
     path = os.getenv('HOME') .. Core.notesdir
   else
-    path = os.getenv("%OneDrive%") .. Core.notesdir
+    path = od .. Core.notesdir
   end
   return path
 end
