@@ -21,8 +21,8 @@ vim.cmd.set("splitbelow")
 vim.cmd.set("splitright")
 
 vim.opt.swapfile = false
-vim.opt.backupdir = os.getenv("HOME") .. "/.vim/backupdir"
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.backupdir = os.getenv(Core.Home) .. "/.vim/backupdir"
+vim.opt.undodir = os.getenv(Core.Home) .. "/.vim/undodir"
 vim.opt.undofile = true
 
 

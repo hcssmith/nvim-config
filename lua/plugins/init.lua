@@ -1,5 +1,3 @@
-require("functions.util")
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -185,7 +183,7 @@ require('lazy').setup({
                 local dir = vim.fn.fnamemodify(selection.path, ":p:h")
                 require("telescope.actions").close(prompt_bufnr)
                 -- Depending on what you want put `cd`, `lcd`, `tcd`
-                vim.cmd(string.format("silent lcd %s", dir))
+                vim.cmd(string.format("silent cd %s", dir))
               end
             }
           }

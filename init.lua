@@ -5,6 +5,9 @@ require("globals")
 require("functions.util")
 require("functions.util.cond")
 
+-- Conditional globals
+require("globals.cond")
+
 -- If is a Gui include gui only setup, 
 -- neovide / nvy supported curreny add test
 -- in Gui function within function.util
