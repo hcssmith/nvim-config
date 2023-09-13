@@ -87,12 +87,12 @@ require('lazy').setup({
           {
             icon = ' ',
             icon_hl = 'Title',
-            desc = 'New Note                ',
+            desc = 'Notes                   ',
             desc_hl = 'String',
             key = 'N',
             keymap = '',
             key_hl = 'Number',
-            action = function() NewNote() end
+            action = ':Neorg workspace notes'
           },
           {
             icon = ' ',
