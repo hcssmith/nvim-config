@@ -9,6 +9,15 @@ vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
 
+local keymaps = {
+  normal = {
+    {'zR', require('ufo').openAllFolds},
+    {'zM', require('ufo').closeAllFolds},
+  }
+}
+
+Set_keymaps(keymaps)
+
 -- Option 2: nvim lsp as LSP client
 -- Tell the server the capability of foldingRange,
 -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
