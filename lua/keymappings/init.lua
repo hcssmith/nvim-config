@@ -1,15 +1,20 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("i", "jk", "<Esc>")
+local keymaps = {
+  insert = {
+    {"jk", "<Esc>"}
+  },
+  normal = {
+    {"<C-h>", "<C-W><C-h>"},
+    {"<C-j>", "<C-W><C-j>"},
+    {"<C-k>", "<C-W><C-k>"},
+    {"<C-l>", "<C-W><C-l>"},
+    {"<C-Left>", "<C-W><C-h>"},
+    {"<C-Down>", "<C-W><C-j>"},
+    {"<C-Up>", "<C-W><C-k>"},
+    {"<C-Right>", "<C-W><C-l>"},
+    {"Q", "<nop>"}
+  }
+}
 
-vim.keymap.set("n", "<C-h>", "<C-W><C-h>")
-vim.keymap.set("n", "<C-j>", "<C-W><C-j>")
-vim.keymap.set("n", "<C-k>", "<C-W><C-k>")
-vim.keymap.set("n", "<C-l>", "<C-W><C-l>")
-
-vim.keymap.set("n", "<C-Left>", "<C-W><C-h>")
-vim.keymap.set("n", "<C-Down>", "<C-W><C-j>")
-vim.keymap.set("n", "<C-Up>", "<C-W><C-k>")
-vim.keymap.set("n", "<C-Right>", "<C-W><C-l>")
-
-vim.keymap.set("n", "Q", "<nop>")
+Set_keymaps(keymaps)

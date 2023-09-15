@@ -34,28 +34,33 @@ lsp.set_preferences({
         info = 'I'
     }
 })
+local opts = {buffer = bufnr, remap = false}
+local keymaps = {
+  normal = {
+    {"gd", vim.lsp.buf.definition,opts},
+    {"<leader>vws", vim.lsp.buf.workspace_symbol, opts},
+    {"<leader>vd", vim.diagnostic.open_float, opts},
+    {"[d", vim.diagnostic.goto_next, opts},
+    {"]d", vim.diagnostic.goto_prev, opts},
+    {"<leader>vca", vim.lsp.buf.code_action, opts},
+    {"<leader>vrr", vim.lsp.buf.references, opts},
+    {"<leader>vrn", vim.lsp.buf.rename, opts},
+    {"<leader>pd", ":Lspsaga peek_definition<CR>", opts},
+    {"<leader>ca", ":Lspsaga code_action<CR>", opts},
+    {"<leader>o", ":Lspsaga outline<CR>", opts},
+    {"K", ":Lspsaga hover_doc<CR>", opts}
+  },
+  insert = {
+    {"<C-h>", vim.lsp.buf.signature_help, opts}
+  }
+}
 
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
-
+  Set_keymaps(keymaps)
   if client.name == "eslint" then
       vim.cmd.LspStop('eslint')
       return
   end
-
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>pd", ":Lspsaga peek_definition<CR>", opts)
-  vim.keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
-  vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", opts)
-  vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
 end)
 
 lsp.setup()

@@ -27,7 +27,8 @@ require('lazy').setup({
         load = {
           ["core.defaults"] = {}, -- Loads default behaviour
           ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.ui.calendar"] = {}, -- Adds pretty icons to your documents
+          ["core.itero"] = {},
+          ["core.promo"] = {},
           ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
               workspaces = {

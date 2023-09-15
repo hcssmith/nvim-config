@@ -1,1 +1,4 @@
-vim.keymap.set('n', '<leader>lu', function() require('lazy').update() end)
+Set_keymaps({normal = {
+  {"<leader>lu",function() require('lazy').update() end}
+}})
+
