@@ -26,14 +26,10 @@ require("settings")
 -- lsp setup
 require("plugins.lsp")
 require("plugins.ufo")
-require('plugins.lazy')
--- Only inculde when not windows (problem getting C compiler in scope)
---if HasCCompiler then
-  --require("plugins.treesitter-context")
---end
 
 -- Assorted other configs
 require('plugins.dashboard')
+require('plugins.lazy')
 require("plugins.telescope")
 require('plugins.markdown-preview')
 require("plugins.nvimtree")
