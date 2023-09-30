@@ -20,11 +20,11 @@ Core.Keybindings = {
   },
   Neorg = {
     normal = {
-      {"<localleader>nd", ":Neorg keybind norg core.qol.todo_items.todo.task_done<CR>", {} },
-      {"<localleader>nc", ":Neorg keybind norg core.qol.todo_items.todo.task_cycle<CR>", {} },
-      {"<localleader>nh", ":Neorg keybind norg core.qol.todo_items.todo.task_on_hold<CR>", {} },
-      {"<localleader>nr", ":Neorg keybind norg core.qol.todo_items.todo.task_recurring<CR>", {} },
-      {"<localleader>lt", ":Neorg keybind norg core.pivot.toggle-list-type<CR>", {} }
+      {"<localleader>nd", ":Neorg keybind norg core.qol.todo_items.todo.task_done<CR>"},
+      {"<localleader>nc", ":Neorg keybind norg core.qol.todo_items.todo.task_cycle<CR>"},
+      {"<localleader>nh", ":Neorg keybind norg core.qol.todo_items.todo.task_on_hold<CR>"},
+      {"<localleader>nr", ":Neorg keybind norg core.qol.todo_items.todo.task_recurring<CR>"},
+      {"<localleader>lt", ":Neorg keybind norg core.pivot.toggle-list-type<CR>"}
     }
   },
   Dashboard = {
