@@ -23,6 +23,7 @@ require('lazy').setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     cond = HasCCompiler,
     config = function()
+      Set_keymaps(Core.Keybindings.Neorg, 0)
       require("neorg").setup {
         load = {
           ["core.defaults"] = {}, -- Loads default behaviour
