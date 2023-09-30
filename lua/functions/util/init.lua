@@ -69,7 +69,7 @@ function NotesDir()
   return path
 end
 
-function Set_keymaps(keymap_tbl, bufnr)
+function SetKeymaps(keymap_tbl, bufnr)
   local modes = {
     { "insert","i"},
     { "normal","n"},

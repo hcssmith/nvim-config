@@ -4,7 +4,7 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
-Set_keymaps(Core.Keybindings.Ufo)
+SetKeymaps(Core.Keybindings.Ufo)
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {

@@ -31,7 +31,7 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(client, bufnr)
-  Set_keymaps(Core.Keybindings.Lsp, bufnr)
+  SetKeymaps(Core.Keybindings.Lsp, bufnr)
   if client.name == "eslint" then
       vim.cmd.LspStop('eslint')
       return
