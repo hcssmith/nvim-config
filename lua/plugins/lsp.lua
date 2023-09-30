@@ -16,11 +16,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 
--- disable completion with tab
--- this helps with copilot setup
---cmp_mappings['<Tab>'] = nil
---cmp_mappings['<S-Tab>'] = nil
-
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
@@ -34,29 +29,9 @@ lsp.set_preferences({
         info = 'I'
     }
 })
-local opts = {buffer = bufnr, remap = false}
-local keymaps = {
-  normal = {
-    {"gd", vim.lsp.buf.definition,opts},
-    {"<leader>vws", vim.lsp.buf.workspace_symbol, opts},
-    {"<leader>vd", vim.diagnostic.open_float, opts},
-    {"[d", vim.diagnostic.goto_next, opts},
-    {"]d", vim.diagnostic.goto_prev, opts},
-    {"<leader>vca", vim.lsp.buf.code_action, opts},
-    {"<leader>vrr", vim.lsp.buf.references, opts},
-    {"<leader>vrn", vim.lsp.buf.rename, opts},
-    {"<leader>pd", ":Lspsaga peek_definition<CR>", opts},
-    {"<leader>ca", ":Lspsaga code_action<CR>", opts},
-    {"<leader>o", ":Lspsaga outline<CR>", opts},
-    {"K", ":Lspsaga hover_doc<CR>", opts}
-  },
-  insert = {
-    {"<C-h>", vim.lsp.buf.signature_help, opts}
-  }
-}
 
 lsp.on_attach(function(client, bufnr)
-  Set_keymaps(keymaps)
+  Set_keymaps_with_bufnr(Core.Keybindings.Lsp, bufnr)
   if client.name == "eslint" then
       vim.cmd.LspStop('eslint')
       return
@@ -71,7 +46,6 @@ vim.diagnostic.config({
 
 local lspconfig = require('lspconfig')
 
--- example to setup lua_ls and enable call snippets
 lspconfig.lua_ls.setup({
   settings = {
     Lua = {

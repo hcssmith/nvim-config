@@ -4,20 +4,8 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
--- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+Set_keymaps(Core.Keybindings.Ufo)
 
-local keymaps = {
-  normal = {
-    {'zR', require('ufo').openAllFolds},
-    {'zM', require('ufo').closeAllFolds},
-  }
-}
-
-Set_keymaps(keymaps)
-
--- Option 2: nvim lsp as LSP client
--- Tell the server the capability of foldingRange,
--- Neovim hasn't added foldingRange to default capabilities, users must add it manually
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,

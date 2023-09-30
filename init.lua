@@ -1,6 +1,7 @@
 -- Global variables, large strings or 
 -- things that are refeneced in multiple places
 require("globals")
+require("globals.keymaps")
 -- Various utility functions (search funcs , feature / os checks
 require("functions.util")
 require("functions.util.cond")
@@ -9,7 +10,7 @@ require("functions.util.cond")
 require("globals.cond")
 
 -- If is a Gui include gui only setup, 
--- neovide / nvy supported curreny add test
+-- neovide / nvy supported currently add test
 -- in Gui function within function.util
 if Gui then
   require("gui")
@@ -28,10 +29,9 @@ require("plugins.lsp")
 require("plugins.ufo")
 
 -- Assorted other configs
-require('plugins.dashboard')
-require('plugins.lazy')
-require("plugins.telescope")
 require('plugins.markdown-preview')
-require("plugins.nvimtree")
-require('preview')
+require('plugins.nvimtree')
+
+-- Setup all remaining keybinds from global config
+require('plugins.keybinds')
 

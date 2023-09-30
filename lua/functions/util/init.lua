@@ -87,3 +87,27 @@ function Set_keymaps(keymap_tbl)
     end
   end
 end
+
+function Set_keymaps_with_bufnr(keymap_tbl, bufnr)
+  if keymap_tbl["insert"] ~= nil then
+    for _,v in ipairs(keymap_tbl.insert) do
+      local opts = v[3]
+      opts.buffer = bufnr
+      vim.keymap.set("i", v[1], v[2], opts)
+    end
+  end
+  if keymap_tbl["normal"] ~= nil then
+    for _,v in ipairs(keymap_tbl.normal) do
+      local opts = v[3]
+      opts.buffer = bufnr
+      vim.keymap.set("n", v[1], v[2], opts)
+    end
+  end
+  if keymap_tbl["visual"] ~= nil then
+    for _,v in ipairs(keymap_tbl.visual) do
+      local opts = v[3]
+      opts.buffer = bufnr
+      vim.keymap.set("v", v[1], v[2], opts)
+    end
+  end
+end

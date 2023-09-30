@@ -1,0 +1,7 @@
+Set_keymaps(Core.Keybindings.Dashboard)
+Set_keymaps(Core.Keybindings.Lazy)
+Set_keymaps(Core.Keybindings.Tree)
+Set_keymaps(Core.Keybindings.Telescope)
+Set_keymaps(Core.Keybindings.TreeSitterContext)
+Set_keymaps(Core.Keybindings.MarkdownPreview)
+Set_keymaps(Core.Keybindings.Neorg)
