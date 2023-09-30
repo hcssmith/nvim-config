@@ -70,31 +70,18 @@ function NotesDir()
 end
 
 function Set_keymaps(keymap_tbl, bufnr)
-  if keymap_tbl["insert"] ~= nil then
-    for _,v in ipairs(keymap_tbl.insert) do
-      local opts = v[3]
-      if bufnr ~= nil then
-        opts.buffer = bufnr
+  local modes = {
+    { "insert","i"},
+    { "normal","n"},
+    { "visual","v"}
+  }
+  for _, v in ipairs(modes) do
+    if keymap_tbl[v[1]] ~= nil then
+      for _, km in ipairs(keymap_tbl[v[1]]) do
+        local opts = km[3]
+        if opts ~= nil then opts.buffer = bufnr end
+        vim.keymap.set(v[2], km[1], km[2], opts)
       end
-      vim.keymap.set("i", v[1], v[2], opts)
-    end
-  end
-  if keymap_tbl["normal"] ~= nil then
-    for _,v in ipairs(keymap_tbl.normal) do
-      local opts = v[3]
-      if bufnr ~= nil then
-        opts.buffer = bufnr
-      end
-      vim.keymap.set("n", v[1], v[2], opts)
-    end
-  end
-  if keymap_tbl["visual"] ~= nil then
-    for _,v in ipairs(keymap_tbl.visual) do
-      local opts = v[3]
-      if bufnr ~= nil then
-        opts.buffer = bufnr
-      end
-      vim.keymap.set("v", v[1], v[2], opts)
     end
   end
 end
