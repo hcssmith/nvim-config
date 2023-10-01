@@ -37,6 +37,7 @@ require('lazy').setup({
               workspaces = {
                notes = Core.NotesDir,
               },
+              default_workspace = "notes"
             },
           },
         },
