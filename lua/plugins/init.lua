@@ -1,3 +1,5 @@
+require('plugins.neorg')
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -23,7 +25,7 @@ require('lazy').setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     cond = HasCCompiler,
     config = function()
-      SetKeymaps(Core.Keybindings.Neorg, 0)
+      SetupNeorgBindings()
       require("neorg").setup {
         load = {
           ["core.defaults"] = {}, -- Loads default behaviour
