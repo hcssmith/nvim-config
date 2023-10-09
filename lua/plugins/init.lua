@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim', -- DONE
     config = function () require('gitsigns').setup({}) end
   },
   {
@@ -44,20 +44,20 @@ require('lazy').setup({
       }
     end,
   },
-  'lervag/vimtex',
+  'lervag/vimtex', -- DONE
   {
-    "iamcco/markdown-preview.nvim",
+    "iamcco/markdown-preview.nvim", --DONE
     build = function() vim.fn["mkdp#util#install"]() end,
   },
-  'AlexvZyl/nordic.nvim',
-  'Mofiqul/dracula.nvim',
+  'AlexvZyl/nordic.nvim', --DONE
+  'Mofiqul/dracula.nvim', -- DONE
   {
-    'folke/tokyonight.nvim',
+    'folke/tokyonight.nvim', -- DONE
     config = function() require('tokyonight').setup({
       style = 'storm'
     }) end},
   {
-    'nvim-tree/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua', -- DONE
     dependencies = {
       'nvim-tree/nvim-web-devicons'
     },
@@ -72,7 +72,7 @@ require('lazy').setup({
     }) end
   },
   {
-    'glepnir/dashboard-nvim',
+    'glepnir/dashboard-nvim', --DONE
     event = 'VimEnter',
     config = function() require('dashboard').setup({
       theme = "doom",
@@ -162,7 +162,7 @@ require('lazy').setup({
     dependencies = { {'nvim-tree/nvim-web-devicons'}}
   },
   {
-    'nvim-lualine/lualine.nvim',
+    'nvim-lualine/lualine.nvim', --DONE
     config = function() require'lualine'.setup{
       options = {
         theme = Core.theme,
